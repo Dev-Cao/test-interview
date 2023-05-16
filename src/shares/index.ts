@@ -1,5 +1,5 @@
 export enum Status {
-  OFFERING = 'offering',
-  RUNNING = 'running',
-  OFFBOARDING = 'offboarding',
+  OFFERING = 'OFFERING',
+  RUNNING = 'RUNNING',
+  OFFBOARDING = 'OFFBOARDING',
 }

@@ -25,6 +25,15 @@ export class SessionsService {
       sesssionCache.set('sessions', data);
     }
 
+    if (short_title && status) {
+      const sessions = sessionValues?.filter(
+        (session) =>
+          session.program[0].short_title === short_title &&
+          session.status === status.toUpperCase(),
+      );
+      return paginate(sessions, page, limit);
+    }
+
     if (short_title) {
       const sessions = sessionValues?.filter(
         (session) => session.program[0].short_title === short_title,
