@@ -1,14 +1,14 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsOptional, IsEnum } from 'class-validator';
-import { ShortTitle, Status } from '../../shares/index';
+import { Status } from '../../shares/index';
+import { Transform } from 'class-transformer';
 
 export class GetSessionDto {
   @IsOptional()
-  @IsEnum(ShortTitle, {
-    message: `short_title Invalid property value ${Object.values(
-      ShortTitle,
-    ).join(', ')}`,
-    each: true,
+  @Transform((val) => {
+    return val && val.value && typeof val.value === 'string'
+      ? val.value.trim()
+      : val.value;
   })
   @ApiProperty({
     type: String,
@@ -18,16 +18,21 @@ export class GetSessionDto {
   short_title?: string;
 
   @IsOptional()
+  @ApiProperty({
+    type: String,
+    description: 'status',
+    required: false,
+  })
   @IsEnum(Status, {
     message: `status Invalid property value ${Object.values(Status).join(
       ', ',
     )}`,
     each: true,
   })
-  @ApiProperty({
-    type: String,
-    description: 'status',
-    required: false,
+  @Transform((val) => {
+    return val && val.value && typeof val.value === 'string'
+      ? val.value.trim()
+      : val.value;
   })
   status?: string;
 

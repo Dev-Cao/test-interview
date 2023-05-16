@@ -34,7 +34,7 @@ export class SessionsService {
 
     if (status) {
       const sessions = sessionValues?.filter(
-        (session) => session.status === status,
+        (session) => session.status === status.toUpperCase(),
       );
       return paginate(sessions, page, limit);
     }

@@ -17,13 +17,6 @@ describe('SessionsService', () => {
   });
 
   describe('Function: GetSessions', () => {
-    it('should get sessions with query short_title invalid', async () => {
-      const shortTitle = 'data';
-      const action = async () => {
-        await service.getSessions({ short_title: shortTitle });
-      };
-      await expect(action()).rejects.toThrow('Bad Request Exception');
-    });
     it('should get sessions with query short_title valid', async () => {
       const shortTitle = 'vc';
       const result = await service.getSessions({ short_title: shortTitle });
@@ -31,7 +24,7 @@ describe('SessionsService', () => {
     });
 
     it('should get sessions with query status valid', async () => {
-      const status = 'RUNNING';
+      const status = 'running';
       const result = await service.getSessions({ status });
       expect(result.total).toBe(10);
     });

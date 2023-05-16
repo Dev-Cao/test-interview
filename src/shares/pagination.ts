@@ -1,4 +1,4 @@
-export function paginate(items: any[], currentPage = 1, perPage = 9) {
+export function paginate(items: any[], currentPage = 1, perPage = 6) {
   const offset = (currentPage - 1) * perPage;
   const paginatedItems = items.slice(offset).slice(0, perPage);
   const totalPages = Math.ceil(items.length / perPage);
